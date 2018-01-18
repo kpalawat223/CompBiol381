@@ -3,7 +3,7 @@ title: "Kunal Palawat BIOL381"
 author: "Kunal Palawat"
 output:
   prettydoc::html_pretty:
-    theme: bitwiser
+    theme: skinnybones
     highlight: github
 ---
 
@@ -11,6 +11,10 @@ output:
 ##Spring 2018
 ###Kunal Palawat
 
-My name is Kunal. I love dirt.
+My name is Kunal Palawat. I am a senior in the Rubenstein School studying Environmental Science. I have a concentration in Agriculture and the Environment. I also have a minor in soil science and plant biology. Basically, I love dirt and plants. I work in Carol Adair's lab: Terrestrial Biogeochemistry for a Changing World. I study all things soil microorganism including litter decomposition in forests and nutrient cycling in agricultural riparian zones.
+
+My interests lie in plant root and soil interactions, microbial biogeochemical cycling, and crop science. I also have a desire to incorporate social justice and equity into my research and research outcomes.
+
+###successfully completed index
 
 
