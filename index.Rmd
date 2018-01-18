@@ -1,0 +1,16 @@
+---
+title: "Kunal Palawat BIOL381"
+author: "Kunal Palawat"
+output:
+  prettydoc::html_pretty:
+    theme: bitwiser
+    highlight: github
+---
+
+#Computational Biology
+##Spring 2018
+###Kunal Palawat
+
+My name is Kunal. I love dirt.
+
+
