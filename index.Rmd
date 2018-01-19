@@ -7,7 +7,12 @@ output:
     highlight: github
 ---
 
-##Introduction
+#Introduction
+
+<img src="Palawat.jpg" width="250" height="300" />
+
+#####This is me after a long day at my field site in Swanton, VT summer 2017!
+
 
 My name is Kunal Palawat. I am a senior in the Rubenstein School studying Environmental Science. I have a concentration in Agriculture and the Environment. I also have a minor in soil science and plant biology. Basically, I love dirt and plants. I work in Carol Adair's lab: Terrestrial Biogeochemistry for a Changing World. I study all things soil microorganism including litter decomposition in forests and nutrient cycling in agricultural riparian zones.
 
