@@ -1,13 +1,6 @@
 ---
-name: "my-website"
-navbar:
-  title: "Spring 2018 BIOL381"
-  left:
-    -text: "Home"
-    href: index.html
-    -text: "About"
-    href: about.html
-
+title: "Spring 2018 BIOL381"
+author: "None"
 output:
   prettydoc::html_pretty:
     theme: skinnybones
