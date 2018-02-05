@@ -1,8 +1,9 @@
 ---
 title: "Homework 2"
 author: "Kunal Palawat"
-date: "1/29/2018"
-output: html_document
+output:
+  prettydoc::html_pretty:
+    theme: cayman
 ---
 
 ```{r setup, include=FALSE}
