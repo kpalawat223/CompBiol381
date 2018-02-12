@@ -4,6 +4,7 @@ author: "Kunal Palawat"
 output:
   prettydoc::html_pretty:
     theme: cayman
+    toc: yes
 ---
 
 #Introduction
