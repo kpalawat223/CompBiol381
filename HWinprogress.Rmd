@@ -1,0 +1,17 @@
+---
+title: "HW in Progress"
+author: "Kunal Palawat"
+output:
+  prettydoc::html_pretty:
+    theme: cayman
+    toc: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#SORRY CHECK IN LATER
+##This homework has not been completed yet!
+###Sorry for the inconvinience
+
