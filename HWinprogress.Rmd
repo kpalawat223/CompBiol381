@@ -11,7 +11,7 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-#SORRY CHECK IN LATER
+#SORRY, CHECK IN LATER
 ##This homework has not been completed yet!
 ###Sorry for the inconvinience
 

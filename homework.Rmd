@@ -14,14 +14,14 @@ knitr::opts_chunk$set(echo = TRUE)
 #Here are all the homeworks for BIOL381 Spring 2018.
 
 
-[Homework #2](https://kpalawat223.github.io/CompBiol381/homework2)
+[Homework #02](https://kpalawat223.github.io/CompBiol381/homework2)
 
-[Homework #3](https://kpalawat223.github.io/CompBiol381/HWinprogress)
+[Homework #03](https://kpalawat223.github.io/CompBiol381/HWinprogress)
 
-[Homework #4](https://kpalawat223.github.io/CompBiol381/HWinprogress)
+[Homework #04](https://kpalawat223.github.io/CompBiol381/HWinprogress)
 
-[Homework #5](https://kpalawat223.github.io/CompBiol381/HWinprogress)
+[Homework #05](https://kpalawat223.github.io/CompBiol381/HWinprogress)
 
-[Homework #6](https://kpalawat223.github.io/CompBiol381/HWinprogress)
+[Homework #06](https://kpalawat223.github.io/CompBiol381/HWinprogress)
 
-[Homework #7](https://kpalawat223.github.io/CompBiol381/HWinprogress)
+[Homework #07](https://kpalawat223.github.io/CompBiol381/HWinprogress)
