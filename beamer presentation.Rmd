@@ -1,0 +1,94 @@
+---
+title: Understanding the biogeochemical role of soil microbial communities in VT agricultural riparian zones
+author: "Kunal Palawat and Colleen Yancey"
+output:
+  beamer_presentation:
+    colortheme: seahorse
+    incremental: yes
+    theme: Pittsburgh
+  slidy_presentation:
+    incremental: yes
+subtitle: VT EPSCoR | NSF
+institute: University of Vermont | Adair Lab
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+#Introduction 
+
+##Introduction
+- Riparian zones are integral to managing biogeochemical cycling
+
+\bigskip
+
+- They can reduce the flow of nutrients such as Phosphorus, Carbon, and Nitrogen into waterways
+
+##Introduction
+ \begin{picture}(520.5,308)
+ \put(-25,80){\includegraphics[height=7.5cm]{RiparianZone.jpg}}
+ \end{picture}
+ 
+##Introduction
+>- Riparian zones are integral to managing biogeochemical cycling
+
+\bigskip
+
+>- They can reduce the flow of nutrients such as Phosphorus, Carbon, and Nitrogen into waterways
+
+\bigskip
+
+>- Soil microbes play an important role in the movement of these nutrients
+
+#Study Site & Sampling Scheme
+
+##Study Site & Sampling Scheme
+>- \color{red} We took 90 intact soil cores from a wet agricultural riparian zone in Swanton, VT
+>- \color{gray} Wihin the wet riparian zone, we took 45 cores from the dry site and 45 cores from the wet site
+>- \color{gray} Future studies will sample from the dry agricultural riparian zone and a wet/dry forested riparian zone in Northern VT
+
+##Study Site & Sampling Scheme
+>- \color{gray} We took 90 intact soil cores from a wet agricultural riparian zone in Swanton, VT
+>- \color{red} Wihin the wet riparian zone, we took 45 cores from the dry site and 45 cores from the wet site
+>- \color{gray} Future studies will sample from the dry agricultural riparian zone and a wet/dry forested riparian zone in Northern VT
+
+##Study Site & Sampling Scheme
+ \begin{picture}(320,250)
+ \put(0,50){\includegraphics[height=6cm]{WetZone.jpg}}
+ \put(0,30){\begin{minipage}[t]{0.8\linewidth}
+ {Wet Agricultural Riparian Zone}
+ \end{minipage}}
+ \end{picture}
+
+##Study Site & Sampling Scheme
+>- \color{gray} We took 90 intact soil cores from a wet agricultural riparian zone in Swanton, VT
+>- \color{gray} Wihin the wet riparian zone, we took 45 cores from the dry site and 45 cores from the wet site
+>- \color{red} Future studies will sample from the dry agricultural riparian zone and a wet/dry forested riparian zone in Northern VT
+
+#Methods
+
+##Incubation Protocol
+>- The first 15 cores from each site were kept dry
+>- An average Swanton rainstorm was simulated on the second 15 cores from each site 
+>- Hurricane Irene was simulated on the last 15 cores from each site
+
+##Incubation Protocol (cont.)
+ \begin{picture}(320,250)
+ \put(0,50){\includegraphics[height=6cm]{Jar.png}}
+ \put(3,53){\begin{minipage}[t]{0.8\linewidth}
+ {Soil Core Set Up}
+ \end{minipage}}
+ \end{picture}
+ 
+##Incubation Protocol (cont.)
+>- Gas flux data measured via photoacoustic spectroscopy
+>- Leachate was collected, labeled, and frozen as needed for future analysis
+>- Cores were destructively sampled for future enzyme analysis
+
+##Post-Incubation Analysis
+>- Microplating leachate to assess ammonium and nitrate concentrations
+>- Running leachate samples to assess dissolved organic carbon and dissolved nitrogen
+>- Microplating soils to assess microbial enzymatic activity
+
+

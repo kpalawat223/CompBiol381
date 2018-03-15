@@ -25,5 +25,5 @@ knitr::opts_chunk$set(echo = TRUE)
 My experiments and sampling are trying to assess the response of riparian buffer soils of different moisture regimes to extreme precipiation events. The analysis focuses on collecting data about microorganisms such as extracellular enzyme activity over time, nitrous oxide flux, and soil core leachate nutrient concentrations over time.
 
 <img src="StudyFlowchart.jpg" width="1275" height="1650" />
-#####Flow chart describing my research. Climate change impacts the frequency of extreme events which I hypothesize impacts soil microbial populations and therefore enzymatic activity. These things in turn influence nutrient cycling and eutrophication in Lake Champlain. In my research, we apply this model to an agricultural riparian zone.
+Flow chart describing my research. Climate change impacts the frequency of extreme events which I hypothesize impacts soil microbial populations and therefore enzymatic activity. These things in turn influence nutrient cycling and eutrophication in Lake Champlain. In my research, we apply this model to an agricultural riparian zone.
 

@@ -1,0 +1,14 @@
+---
+title: "Homework 3"
+author: "Kunal Palawat"
+output:
+  prettydoc::html_pretty:
+    theme: cayman
+    toc: no
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<img src="beamerpresentation.pdf" width="400" height="500" />
