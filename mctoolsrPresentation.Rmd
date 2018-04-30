@@ -1,0 +1,124 @@
+---
+title: "MCTOOLSR Presentation"
+author: "Kunal Palawat"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Load mctoolsr and associated packages. This package is used to understand microbial taxonomic data, similar to what John had presented last week. We are going to be making heat maps and ordination graphs today.
+```{r}
+#install.packages("devtools")
+#devtools::install_github("leffj/mctoolsr")
+library(mctoolsr)
+library(ggplot2)
+```
+
+The first step is to load in data. These lines bring in data from one of the developpers and format it so that we can use the rest of the functions properly.
+```{r}
+tax_table_fp = system.file('extdata', 'fruits_veggies_taxa_table_wTax.biom', 
+                           package = 'mctoolsr')
+map_fp = system.file('extdata', 'fruits_veggies_metadata.txt', 
+                     package = 'mctoolsr')
+input = load_taxa_table(tax_table_fp, map_fp)
+```
+
+This code rarefies the data. As far as I understand it, this essentially standardizes the microbial taxa data to the lowest number of values across sampels. Also shown is the structure of the data.
+```{r}
+input_rar = single_rarefy(input, min(colSums(input$data_loaded)))
+
+names(input_rar)
+head(input_rar$data_loaded)
+input_rar$map_loaded
+head(input_rar$taxonomy_loaded)
+```
+
+This code calculates diversity indecies for the data. If you use the function "diversity()" you can export the index values.
+```{r}
+plot_diversity(input_rar, 'Sample_type', 'shannon')
+plot_diversity(input_rar, 'Sample_type', 'simpson')
+```
+
+```{r}
+plot_diversity(input_rar, 'Sample_Farming', 'shannon')
+plot_diversity(input_rar, 'Sample_Farming', 'simpson')
+```
+
+This code shows the relative abundance of OTUs belonging to the specified phylum, class, and species.
+```{r}
+tax_sum_phyla = summarize_taxonomy(input=input_rar,
+                                   level = 2,
+                                   report_higher_tax = FALSE)
+head(tax_sum_phyla)
+
+tax_sum_class = summarize_taxonomy(input=input_rar,
+                                   level = 3,
+                                   report_higher_tax = FALSE)
+head(tax_sum_class)
+
+tax_sum_family = summarize_taxonomy(input=input_rar,
+                                   level = 5,
+                                   report_higher_tax = FALSE)
+head(tax_sum_family)
+```
+
+An easier way to see this information is via a heat map. This package also allows us to separate the data based on our treatments.
+
+```{r}
+plot_ts_heatmap(tax_table = tax_sum_phyla,
+                metadata_map = input_rar$map_loaded,
+                min_rel_abund = 0.01,
+                type_header = 'Sample_type',
+                custom_sample_order = c('Lettuce', 'Spinach', 'Strawberries', 'Mushrooms'))
+
+plot_ts_heatmap(tax_table = tax_sum_class,
+                metadata_map = input_rar$map_loaded,
+                min_rel_abund = 0.01,
+                type_header = 'Sample_type',
+                custom_sample_order = c('Lettuce', 'Spinach', 'Strawberries', 'Mushrooms'))
+
+plot_ts_heatmap(tax_table = tax_sum_family,
+                metadata_map = input_rar$map_loaded,
+                min_rel_abund = 0.01,
+                type_header = 'Sample_type',
+                custom_sample_order = c('Lettuce', 'Spinach', 'Strawberries', 'Mushrooms'))
+```
+
+
+Next we will calculate a dissimilarity matrix and plot an ordination quickly. This graph shows us how different the communities in our treatments are.
+```{r}
+dissMatrix <- calc_dm(input_rar$data_loaded)
+plot_nmds(dm=dissMatrix,
+          metadata_map = input_rar$map_loaded,
+          color_cat = "Sample_type")
+plot_nmds(dm=dissMatrix,
+          metadata_map = input_rar$map_loaded,
+          color_cat = "Sample_type",
+          shape_cat = "Farm_type")
+```
+
+This is how to have more control over the ordination.
+```{r}
+ordination <- calc_ordination(dissMatrix, "nmds")
+plot_ordination(input = input_rar,
+                ordination_axes = ordination,
+                color_cat = 'Sample_type')+
+  ggtitle("Clustering by Crop")
+
+plot_ordination(input = input_rar,
+                ordination_axes = ordination,
+                color_cat = 'Sample_type',
+                shape_cat = "Farm_type")+
+  ggtitle("Clustering by Crop and Farm")
+
+plot_ordination(input=input_rar,
+                ordination_axes=ordination,
+                color_cat='Sample_type',
+                shape_cat = "Farm_type",
+                hulls = TRUE) +
+  ggtitle("Clustering by Crop and Farm with Boundaries")
+```
+
+

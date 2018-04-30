@@ -1,0 +1,156 @@
+---
+title: "Homework 7 and 8"
+author: "Kunal Palawat"
+output:
+  prettydoc::html_pretty:
+    theme: cayman
+    toc: no
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+Preliminaries
+```{r}
+library(ggplot2)
+```
+
+Question 1
+
+I expect to see extreme events, like hurricanes, in riparian zones resulting in increased leaching of nitrogen, carbon, and phosphorus from soil into water ways.
+
+Question 2
+Define sample size, means, sds. The means loosely come from my soil core leachate values for nitrate. I chose a very large sample size on purpose.
+```{r}
+
+sampleSize <- 100
+meanTreatment1 <- 2
+meanTreatment2 <- 6
+sdTreatment1 <- 1
+sdTreatment2 <- 2
+
+treatment1 <- rnorm(n=sampleSize,
+                 mean = meanTreatment1,
+                 sd = sdTreatment1)
+
+treatment2 <- rnorm(n=sampleSize,
+                 mean = meanTreatment2,
+                 sd = sdTreatment2)
+
+nitrogenPPM <- c(treatment1, treatment2)
+
+ID <- c(rep("Treatment 1", sampleSize), rep("Treatment 2", sampleSize))
+
+```
+
+Question 3
+
+```{r}
+# FUNCTION: createFakeData
+# creates data frame with random normal values
+# input: mean, n, and sd for 2 treatments 
+# output: data frame with 2 columns labeled ID and N_PPM 
+#---------
+
+createFakeData <- function(mean1=2,mean2=6,
+                       n1=100,n2=100,
+                       sd1=1,sd2=2){
+  
+  ID <- c(rep("Treatment 1", n1), rep("Treatment 2", n2))
+  
+  treatment1 <- rnorm(mean=mean1,n=n1,sd=sd1)
+  treatment2 <- rnorm(mean=mean2,n=n2,sd=sd2)
+  
+  myDF <- data.frame(ID, c(treatment1, treatment2))
+  
+  names(myDF) <- c("ID","N_PPM")
+  return(myDF)
+}
+#---------
+
+nitrogenPPMdf <- createFakeData()
+```
+
+
+Question 4
+Function to analyze data
+```{r}
+# FUNCTION: anovaAnalysis
+# ANOVA analysis for two treatments
+# input: a data frame with two columns, N_PPM and ID
+# output: summary of the ANOVA analysis: Sum Sq, Sum Mean Sq, F value, and p value
+#--------
+anovaAnalysis <- function(data = nitrogenPPMdf){
+  model <- aov(N_PPM~ID, data = data)
+  summary(model)
+}
+#--------
+
+anovaAnalysis()
+```
+
+Function to graph data
+
+```{r}
+# FUNCTION: anovaBoxplot
+# creates boxplot of data to compare means
+# input: a data frame with two columns, N_PPM and ID
+# output: ggplot boxplot
+#--------
+
+anovaBoxplot <- function(data=nitrogenPPMdf){
+ggplot(data=data,
+       mapping = aes(x=ID, y=N_PPM, fill=ID)) + 
+    geom_boxplot()
+}
+
+anovaBoxplot()
+
+```
+
+Question 6
+Analyze effect size. 
+```{r}
+nitrogenPPMdf <- createFakeData(mean1 = 3.75)
+anovaAnalysis()
+
+nitrogenPPMdf <- createFakeData(mean1 = 6)
+anovaAnalysis()
+
+nitrogenPPMdf <- createFakeData(mean1 = 1)
+anovaAnalysis()
+
+nitrogenPPMdf <- createFakeData(mean1 = 5.7)
+anovaAnalysis()
+
+```
+
+This model can detect very small differences in means but the sample size is HUGE! 100 is a large number. My actual study has a sample size of 15.
+
+
+Question 7
+
+So lets try decreasing the sample size to 15 and some other numbers and see what our results look like.
+
+```{r}
+nitrogenPPMdf <- createFakeData(n1 = 15,
+                                n2 = 15)
+anovaAnalysis()
+
+nitrogenPPMdf <- createFakeData(n1 = 10,
+                                n2 = 10)
+anovaAnalysis()
+
+nitrogenPPMdf <- createFakeData(n1 = 3,
+                                n2 = 3)
+anovaAnalysis()
+
+
+nitrogenPPMdf <- createFakeData(n1 = 2,
+                                n2 = 2)
+anovaAnalysis()
+```
+
+It appears that the sample size can become very small and the model can still detect significant differences between data. If the means were closer in number, the model would require more samples to accurately analyze significance.
+
+

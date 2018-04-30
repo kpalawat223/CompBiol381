@@ -1,7 +1,10 @@
 ---
 title: "Homework 5"
 author: "Kunal Palawat"
-output: html_document
+output:
+  prettydoc::html_pretty:
+    theme: cayman
+    toc: no
 ---
 
 ```{r setup, include=FALSE}
