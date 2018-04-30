@@ -45,12 +45,12 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ##Study Site & Sampling Scheme
 >- \color{red} We took 90 intact soil cores from a wet agricultural riparian zone in Swanton, VT
->- \color{gray} Wihin the wet riparian zone, we took 45 cores from the dry site and 45 cores from the wet site
+>- \color{gray} Within the wet riparian zone, we took 45 cores from the dry site and 45 cores from the wet site
 >- \color{gray} Future studies will sample from the dry agricultural riparian zone and a wet/dry forested riparian zone in Northern VT
 
 ##Study Site & Sampling Scheme
 >- \color{gray} We took 90 intact soil cores from a wet agricultural riparian zone in Swanton, VT
->- \color{red} Wihin the wet riparian zone, we took 45 cores from the dry site and 45 cores from the wet site
+>- \color{red} Within the wet riparian zone, we took 45 cores from the dry site and 45 cores from the wet site
 >- \color{gray} Future studies will sample from the dry agricultural riparian zone and a wet/dry forested riparian zone in Northern VT
 
 ##Study Site & Sampling Scheme
@@ -63,7 +63,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ##Study Site & Sampling Scheme
 >- \color{gray} We took 90 intact soil cores from a wet agricultural riparian zone in Swanton, VT
->- \color{gray} Wihin the wet riparian zone, we took 45 cores from the dry site and 45 cores from the wet site
+>- \color{gray} Within the wet riparian zone, we took 45 cores from the dry site and 45 cores from the wet site
 >- \color{red} Future studies will sample from the dry agricultural riparian zone and a wet/dry forested riparian zone in Northern VT
 
 #Methods
@@ -84,7 +84,7 @@ knitr::opts_chunk$set(echo = FALSE)
 ##Incubation Protocol (cont.)
 >- Gas flux data measured via photoacoustic spectroscopy
 >- Leachate was collected, labeled, and frozen as needed for future analysis
->- Cores were destructively sampled for future enzyme analysis
+>- Cores were destructively sampled for gravimetric soil moisture and future enzyme analyses
 
 ##Post-Incubation Analysis
 >- Microplating leachate to assess ammonium and nitrate concentrations
