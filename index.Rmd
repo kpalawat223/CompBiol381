@@ -21,7 +21,9 @@ My interests lie in plant root and soil interactions, microbial biogeochemical c
 
 #[Homework](https://kpalawat223.github.io/CompBiol381/homework)
 
-#[mctoolsr Presentation](https://kpalawat223.github.io/CompBiol381/mctoolsrPresentation)
+#[mctoolsr Presentation HTML](https://kpalawat223.github.io/CompBiol381/mctoolsrPresentation)
+
+#[mctoolsr Presentation RMD]()
 
 ###successfully completed index
 

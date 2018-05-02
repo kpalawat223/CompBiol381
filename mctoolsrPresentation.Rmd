@@ -18,24 +18,24 @@ library(ggplot2)
 
 The first step is to load in data. These lines bring in data from one of the developpers and format it so that we can use the rest of the functions properly.
 ```{r}
-tax_table_fp = system.file('extdata', 'fruits_veggies_taxa_table_wTax.biom', 
+tax_table_fp = system.file('extdata', 'fruits_veggies_taxa_table_wTax.biom',
                            package = 'mctoolsr')
 map_fp = system.file('extdata', 'fruits_veggies_metadata.txt', 
                      package = 'mctoolsr')
 input = load_taxa_table(tax_table_fp, map_fp)
 ```
 
-This code rarefies the data. As far as I understand it, this essentially standardizes the microbial taxa data to the lowest number of values across sampels. Also shown is the structure of the data.
+This code rarefies the data. As far as I understand it, this essentially standardizes the microbial taxa data to the lowest number of sequences across samples. Also shown is the structure of the data.
 ```{r}
 input_rar = single_rarefy(input, min(colSums(input$data_loaded)))
 
 names(input_rar)
 head(input_rar$data_loaded)
-input_rar$map_loaded
+head(input_rar$map_loaded)
 head(input_rar$taxonomy_loaded)
 ```
 
-This code calculates diversity indecies for the data. If you use the function "diversity()" you can export the index values.
+This code calculates diversity indecies for the data. If you use the function "diversity()" you can export the index values by writing it into a .csv file.
 ```{r}
 plot_diversity(input_rar, 'Sample_type', 'shannon')
 plot_diversity(input_rar, 'Sample_type', 'simpson')
@@ -55,7 +55,7 @@ head(tax_sum_phyla)
 
 tax_sum_class = summarize_taxonomy(input=input_rar,
                                    level = 3,
-                                   report_higher_tax = FALSE)
+                                   report_higher_tax = TRUE)
 head(tax_sum_class)
 
 tax_sum_family = summarize_taxonomy(input=input_rar,
@@ -71,7 +71,7 @@ plot_ts_heatmap(tax_table = tax_sum_phyla,
                 metadata_map = input_rar$map_loaded,
                 min_rel_abund = 0.01,
                 type_header = 'Sample_type',
-                custom_sample_order = c('Lettuce', 'Spinach', 'Strawberries', 'Mushrooms'))
+                custom_sample_order = c('Mushrooms', 'Lettuce', 'Spinach', 'Strawberries'))
 
 plot_ts_heatmap(tax_table = tax_sum_class,
                 metadata_map = input_rar$map_loaded,
@@ -120,5 +120,12 @@ plot_ordination(input=input_rar,
                 hulls = TRUE) +
   ggtitle("Clustering by Crop and Farm with Boundaries")
 ```
+
+```{r}
+
+```
+
+
+
 
 
