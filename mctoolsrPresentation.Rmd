@@ -41,10 +41,13 @@ This code calculates diversity indecies for the data. If you use the function "d
 ```{r}
 plot_diversity(input = input_rar,
                variable = 'Sample_type',
-               metric = 'shannon')
+               metric = 'shannon') +
+  geom_jitter()
+
 plot_diversity(input = input_rar,
                variable = 'Sample_type',
-               metric = 'simpson')
+               metric = 'simpson') +
+  geom_point()
 ```
 
 ```{r}
