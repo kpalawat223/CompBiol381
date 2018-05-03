@@ -22,12 +22,14 @@ tax_table_fp = system.file('extdata', 'fruits_veggies_taxa_table_wTax.biom',
                            package = 'mctoolsr')
 map_fp = system.file('extdata', 'fruits_veggies_metadata.txt', 
                      package = 'mctoolsr')
-input = load_taxa_table(tax_table_fp, map_fp)
+input = load_taxa_table(tab_fp = tax_table_fp,
+                        map_fp = map_fp)
 ```
 
-This code rarefies the data. As far as I understand it, this essentially standardizes the microbial taxa data to the lowest number of sequences across samples. Also shown is the structure of the data.
+This code rarefies the data.This means to randomly select a specified number of observations from each sample. In this case we are going to find the minimum number of observations in any of our samples and use that number. Also shown is the structure of the data.
 ```{r}
-input_rar = single_rarefy(input, min(colSums(input$data_loaded)))
+input_rar = single_rarefy(input = input,
+                          depth = min(colSums(input$data_loaded)))
 
 names(input_rar)
 head(input_rar$data_loaded)
@@ -37,13 +39,21 @@ head(input_rar$taxonomy_loaded)
 
 This code calculates diversity indecies for the data. If you use the function "diversity()" you can export the index values by writing it into a .csv file.
 ```{r}
-plot_diversity(input_rar, 'Sample_type', 'shannon')
-plot_diversity(input_rar, 'Sample_type', 'simpson')
+plot_diversity(input = input_rar,
+               variable = 'Sample_type',
+               metric = 'shannon')
+plot_diversity(input = input_rar,
+               variable = 'Sample_type',
+               metric = 'simpson')
 ```
 
 ```{r}
-plot_diversity(input_rar, 'Sample_Farming', 'shannon')
-plot_diversity(input_rar, 'Sample_Farming', 'simpson')
+plot_diversity(input = input_rar,
+               variable = 'Sample_Farming',
+               metric = 'shannon')
+plot_diversity(input = input_rar,
+               variable = 'Sample_Farming',
+               metric = 'simpson')
 ```
 
 This code shows the relative abundance of OTUs belonging to the specified phylum, class, and species.
