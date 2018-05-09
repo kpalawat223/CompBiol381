@@ -27,7 +27,7 @@ Read in and clean up Carbon and Nitrogen data for my soil samples.
 fractionation_data <-  read_xlsx("Blowdown_soil_fractionation_Kunal_20180508.xlsx", sheet = 1, col_names = TRUE)
 
 #cleaning up sheet, deleteing empty rows
-fractionation_data <- fractionation_data[-15,]
+fractionation_data <- fractionation_data[-15,1:16]
 fractionation_data <- fractionation_data[-49,]
 fractionation_data <- fractionation_data[-51:-52,]
 fractionation_data <- fractionation_data[-61:-62,]
