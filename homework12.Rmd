@@ -100,7 +100,7 @@ hf3 <- ggplot(data=fractionation_data_HF,
   ylab("C/N Ratio")+
   scale_fill_manual(values=wes_palette(n=2, name="GrandBudapest2"))+
   scale_color_manual(values=c("slateblue","goldenrod","forestgreen","red"))+
-  annotate("text", x = 1.3, y = 16, label = "Year 2 values for site 3 don't \n show up because I have not \n input that data into \n my excel sheet yet!")
+  annotate("text", x = 2.6, y = 15, label = "Year 2 values for site 3 don't \n show up because I have not \n input that data into \n my excel sheet yet!")
 ```
 
 Show graphs together
