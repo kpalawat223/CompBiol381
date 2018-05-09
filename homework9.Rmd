@@ -1,0 +1,141 @@
+---
+title: "Homework 9"
+author: "Kunal Palawat"
+output:
+  prettydoc::html_pretty:
+    theme: cayman
+    toc: no
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Call preliminaries and write functions at the start of your code.
+```{r}
+library(ggplot2)
+
+# FUNCTION: createFakeData
+# creates data frame with random normal values
+# input: mean, n, and sd for 2 treatments 
+# output: data frame with 2 columns labeled ID and N_PPM 
+#---------
+
+createFakeData <- function(mean1=2,mean2=6,
+                       n1=100,n2=100,
+                       sd1=1,sd2=2){
+  
+  ID <- c(rep("Treatment 1", n1), rep("Treatment 2", n2))
+  
+  treatment1 <- rnorm(mean=mean1,n=n1,sd=sd1)
+  treatment2 <- rnorm(mean=mean2,n=n2,sd=sd2)
+  
+  myDF <- data.frame(ID, c(treatment1, treatment2))
+  
+  names(myDF) <- c("ID","N_PPM")
+  return(myDF)
+}
+#---------
+
+# FUNCTION: anovaAnalysis
+# ANOVA analysis for two treatments
+# input: a data frame with two columns, N_PPM and ID
+# output: summary of the ANOVA analysis: Sum Sq, Sum Mean Sq, F value, and p value
+#--------
+anovaAnalysis <- function(data = nitrogenPPMdf){
+  model <- aov(N_PPM~ID, data = data)
+  summary(model)
+}
+#--------
+
+# FUNCTION: anovaBoxplot
+# creates boxplot of data to compare means
+# input: a data frame with two columns, N_PPM and ID
+# output: ggplot boxplot
+#--------
+
+anovaBoxplot <- function(data=nitrogenPPMdf){
+ggplot(data=data,
+       mapping = aes(x=ID, y=N_PPM, fill=ID)) + 
+    geom_boxplot()
+}
+
+```
+
+Call functions in a few lines.
+```{r}
+. <- createFakeData()
+anovaAnalysis(.)
+anovaBoxplot(.)
+
+```
+
+Use the same code from above with a few adjustments to create 2 treatments for 2 sites and run an ANOVA with an site and treatment interaction
+
+```{r}
+# FUNCTION: createFakeData2
+# creates data frame with random normal values
+# input: mean, n, and sd for 2 treatments for 2 sites 
+# output: data frame with 3 columns labeled ID, N_PPM, and Site
+#---------
+
+createFakeData2 <- function(mean1=2,mean2=6,mean3=9,mean4=12,
+                       n1=100,n2=100,n3=100,n4=100,
+                       sd1=1,sd2=2,sd3=1.5,sd4=6){
+  
+  Treatment <- c(rep("Treatment 1", n1),
+          rep("Treatment 2", n2),
+          rep("Treatment 1", n3),
+          rep("Treatment 2", n4))
+  
+  Site <- c(rep("Blowdown", n1),
+            rep("Blowdown", n2),
+            rep("Old Growth", n3),
+            rep("Old Growth", n4))
+  
+  treatment1_blowdown <- rnorm(mean=mean1,n=n1,sd=sd1)
+  treatment2_blowdown <- rnorm(mean=mean2,n=n2,sd=sd2)
+  treatment1_oldgrowth <- rnorm(mean=mean3,n=n3,sd=sd3)
+  treatment2_oldgrowth <- rnorm(mean=mean4,n=n4,sd=sd4)
+  
+  myDF <- data.frame(Treatment, Site, c(treatment1_blowdown, treatment2_blowdown, treatment1_oldgrowth, treatment2_oldgrowth))
+  
+  names(myDF) <- c("Treatment","Site","N_PPM")
+  return(myDF)
+}
+#---------
+
+# FUNCTION: anovaAnalysis2
+# ANOVA analysis for two treatments
+# input: a data frame with three columns, N_PPM, Site, and Treatment
+# output: summary of the ANOVA analysis: Sum Sq, Sum Mean Sq, F value, and p value
+#--------
+anovaAnalysis2 <- function(data = nitrogenPPMdf){
+  model <- aov(N_PPM~Treatment*Site, data = data)
+  summary(model)
+}
+#--------
+
+# FUNCTION: anovaBoxplot2
+# creates boxplot of data to compare means
+# input: a data frame with three columns, N_PPM, Treatment, and Site
+# output: ggplot boxplot
+#--------
+
+anovaBoxplot2 <- function(data=nitrogenPPMdf){
+ggplot(data=data,
+       mapping = aes(x=Site, y=N_PPM, fill=Treatment)) + 
+    geom_boxplot()
+}
+
+```
+
+Run the functions.
+```{r}
+. <- createFakeData2()
+anovaAnalysis2(.)
+anovaBoxplot2(.)
+```
+
+
+

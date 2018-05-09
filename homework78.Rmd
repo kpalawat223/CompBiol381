@@ -29,18 +29,6 @@ meanTreatment2 <- 6
 sdTreatment1 <- 1
 sdTreatment2 <- 2
 
-treatment1 <- rnorm(n=sampleSize,
-                 mean = meanTreatment1,
-                 sd = sdTreatment1)
-
-treatment2 <- rnorm(n=sampleSize,
-                 mean = meanTreatment2,
-                 sd = sdTreatment2)
-
-nitrogenPPM <- c(treatment1, treatment2)
-
-ID <- c(rep("Treatment 1", sampleSize), rep("Treatment 2", sampleSize))
-
 ```
 
 Question 3

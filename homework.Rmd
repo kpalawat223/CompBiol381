@@ -26,8 +26,10 @@ knitr::opts_chunk$set(echo = TRUE)
 
 [Homework #07 and #08](https://kpalawat223.github.io/CompBiol381/homework78)
 
-[Homework #09](https://kpalawat223.github.io/CompBiol381/HWinprogress)
+[Homework #09](https://kpalawat223.github.io/CompBiol381/homework9)
 
-[Homework #10](https://kpalawat223.github.io/CompBiol381/HWinprogress)
+[Homework #10](https://kpalawat223.github.io/CompBiol381/homework10)
 
-[Homework #11](https://kpalawat223.github.io/CompBiol381/HWinprogress)
+[Homework #11](https://kpalawat223.github.io/CompBiol381/homework11)
+
+[Homework #12](https://kpalawat223.github.io/CompBiol381/homework12)
