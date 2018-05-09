@@ -11,4 +11,115 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 Question 1
+
 Use the code from class as a template and analyze a function of your choosing that is relevant to your own research. Do not change any of the functions in the class code. Instead, copy and rename functions for your own project. Edit those copies, and then modify the lines of code in the main body of your program to call the new functions. If you do this carefully, you will be able to take full advantage of the existing program, but adapt it for your specific use.
+
+An equation I use in my research is one to understand the fraction of new carbon added to soil by soil mesofauna based on carbon isotope data for two plots. One plot has had native litter removed and mesofauna removed (N). One plot has had native litter removed, mesofauna removed, and C4 litter added (NL). 
+
+The equation is: (NL-N)/(C4-N) where all the values are isotope ratios
+
+```{r}
+library(dplyr)
+# 
+# NLdat <- rnorm(n=20, mean=-25.500, sd=.6)
+# Ndat <- rnorm(n=20, mean = -27.900, sd=.6)
+# Plot <- c(1:20)
+# myDF <- data.frame(Plot, NLdat, Ndat)
+# names(myDF) <- c("Plot", "NL.Ratio", "N.Ratio")
+# myDF$Plot <- as.factor(myDF$Plot)
+
+##################################################
+# FUNCTION: fracNewC
+# determines the fraction of new carbon added to soil by mesofauna
+# input: n, mean, and sd for 2 isotope columns and isotope value for C4 litter
+# output: data frame with plot, NL isotope values, N isotope values, and fraction of new carbon per plot
+#------------------------------------------------- 
+
+fracNewC <- function(NL=-25.5, NL2=-24.5,
+                     N=-27.9, N2=-27.0,
+                     C4=-13.5725){
+  frac <- c((NL-N)/(C4-N),(NL2-N2)/(C4-N2))
+  
+  return(frac)
+}
+```
+
+```{r}
+##################################################
+# FUNCTION: plotFracNewC
+# plots histogram of the fraction of new carbon by plot
+# input: data frame from above....data...containing plot, NL isotope values, N isotope values, and fraction of new carbon per plot
+# output: boxplots showing fraction of new carbon
+#------------------------------------------------- 
+
+plotFracNewC <- function(NL=-25.5, NL2=-24.5,
+                     N=-27.9, N2=-27.0,
+                     C4=-13.5725){
+  barplot(c((NL-N)/(C4-N), (NL2-N2)/(C4-N2)),
+          ylim = c(0, .4),
+          ylab = "Fraction New Carbon")
+  mtext(paste("NL =", NL,
+              "  N =", N,
+              "\n NL2 =", NL2,
+              "  N2 =", N2), cex=0.4) 
+      return()
+}
+```
+
+Run Plot Function
+```{r}
+plotFracNewC()
+```
+
+
+Question 2
+
+Similarly, use the code from yesterday’s class to design and conduct a randomization test for some of your own data. You will need to modify the functions that read in the data, calculate the metric, and randomize the data. Once those are set up, the program should run correctly calling your new functions. Also, to make your analysis fully repeatable, make sure you set the random number seed at the beginning (use either set.seed() in base R, or char2seed in the TeachingDemos package
+
+Now make a bunch of plots with different parameters to randomize the data.
+```{r}
+set.seed(05092018)
+
+nlPars <- c(rnorm(n=1, mean=-25.5, sd=1),
+            rnorm(n=1, mean=-25.5, sd=1))
+nPars <- c(rnorm(n=1, mean=-27.5, sd=1),
+           rnorm(n=1, mean=-27.5, sd=1))
+nl2Pars <- c(rnorm(n=1, mean=-26.5, sd=1),
+            rnorm(n=1, mean=-26.5, sd=1))
+n2Pars <- c(rnorm(n=1, mean=-28.5, sd=1),
+           rnorm(n=1, mean=-28.5, sd=1))
+
+par(mfrow=c(4,4))
+for (i in seq_along(nlPars)) {
+  for (j in seq_along(nPars)) {
+    for (k in seq_along(nl2Pars)) {
+      for (l in seq_along(n2Pars)) {
+    plotFracNewC(NL=nlPars[i],
+                 N=nPars[j],
+                 NL2=nl2Pars[k],
+                 N2=n2Pars[l])
+  }}
+}} 
+
+
+```
+
+Question 3
+
+For comparison, calculate in R the standard statistical analysis you would use with these data. How does the p-value compare for the standard test versus the p value you estimated from your randomization test? If the p values seem very different, run the program again with a different starting seed (and/or increase the number of replications in your randomization test). If there are persistent differences in the p value of the standard test versus your randomization, what do you think is responsible for this difference?
+
+Create a data frame with the different combinations of parameters used above with the fractions of new carbon calculated.
+```{r}
+modelFrame<-expand.grid(nlPars, nPars, nl2Pars, n2Pars)
+modelFrame$S<- NA
+modelFrame$S2 <- NA
+modelFrame$Isotope1 <- (nlPars-nPars)/(13.5725-nPars)
+modelFrame$Isotope2 <- (nl2Pars-n2Pars)/(13.5725-n2Pars)
+modelFrame
+```
+
+I really could not figure out the rest of this homework. I think the equation I used and the way I formatted my data does not allow me to use the same structure you used in your code. I added more parameters than I think I needed to for this exercise so that I could have two samples per plot to run a t.test on, but then I realized I would have to simulate data from those parameters to be able to run a t.test and this started becoming too confusing for me to code. Especially with the loops becoming extremely long and complex.
+
+I looked over Colleen Yancey's script and did some work understanding how to write a for loop to fill the modelframe with parameters. I think it would be much simpler to run MCMC simulations. I think that is essentially what we are doing here except we are writing the functions behind the chain.
+
+Again, sorry about not fully completing this assignment! Homework 12 will surely make up for it.
