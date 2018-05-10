@@ -26,11 +26,11 @@ Read in and clean up Carbon and Nitrogen data for my soil samples.
 #load in data for year 1 and 2
 fractionation_data <-  read_xlsx("Blowdown_soil_fractionation_Kunal_20180508.xlsx", sheet = 1, col_names = TRUE)
 
-#cleaning up sheet, deleteing empty rows
+#cleaning up sheet, deleteing empty rows and c4 litter row
 fractionation_data <- fractionation_data[-15,1:16]
 fractionation_data <- fractionation_data[-49,]
-fractionation_data <- fractionation_data[-51:-52,]
-fractionation_data <- fractionation_data[-61:-62,]
+#take out s1 lower year 2....samples dug up....outliers
+fractionation_data <- fractionation_data[-57:-64,]
 
 #make sure year is a factor
 fractionation_data$Year <- as.factor(fractionation_data$Year)
@@ -46,130 +46,122 @@ str(fractionation_data_LF)
 
 ##For the Heavy Fraction Soils
 
-Make Boxplots of Nitrogen Data
+Make Boxplots of Nitrogen, Carbon, and C/N Data
 ```{r}
 #% N means by Site, Treatment, and Year
 hf1 <- ggplot(data=fractionation_data_HF,
-              mapping=aes(x=Site,
+              mapping=aes(x=Treatment,
                           y=N,
-                          color=Treatment,
+                          #color=Treatment,
                           fill=Year)) +
-  geom_boxplot() +
+  geom_boxplot(position = position_dodge(width = .8)) +
   #scale_y_continuous(limits=c(.1,.8)) +
-  theme_classic() +
-  theme(legend.position = "none")+
+  theme_bw() +
+  facet_grid(.~Site)+
+  #theme(legend.position = "none")+
   ggtitle("% N of Heavy Fraction Soils") +
   xlab("Site")+
   ylab("Percent Nitrogen")+
   scale_fill_manual(values=wes_palette(n=2, name="GrandBudapest2"))+
   scale_color_manual(values=c("slateblue","goldenrod","forestgreen","red"))
-```
 
-Make Boxplots of Carbon Data
-```{r}
 #% C means by Site, Treatment, and Year
 hf2 <- ggplot(data=fractionation_data_HF,
-              mapping=aes(x=Site,
+              mapping=aes(x=Treatment,
                           y=C,
-                          color=Treatment,
+                          #color=Treatment,
                           fill=Year)) +
-  geom_boxplot() +
+  geom_boxplot(position = position_dodge(width = .8)) +
   #scale_y_continuous(limits=c(2.5,13)) +
-  theme_classic() +
-  theme(legend.position = "none")+
+  theme_bw() +
+  facet_grid(.~Site)+
+  #theme(legend.position = "none")+
   ggtitle("% C of Heavy Fraction Soils") +
   xlab("Site")+
   ylab("Percent Carbon")+
   scale_fill_manual(values=wes_palette(n=2, name="GrandBudapest2"))+
   scale_color_manual(values=c("slateblue","goldenrod","forestgreen","red"))
-```
 
-Make Boxplots of C/N Ratio Data
-```{r}
+
 #C/N Ratio means by Site, Treatment, and Year
 hf3 <- ggplot(data=fractionation_data_HF,
-              mapping=aes(x=Site,
+              mapping=aes(x=Treatment,
                           y=C/N,
-                          color=Treatment,
+                          #color=Treatment,
                           fill=Year)) +
-  geom_boxplot() +
+  geom_boxplot(position = position_dodge(width = .8)) +
   #scale_y_continuous(limits=c(12.5,18)) +
-  theme_classic() +
+  theme_bw() +
+  facet_grid(.~Site)+
   ggtitle("C/N Ratios of Heavy Fraction Soils") +
   xlab("Site")+
   ylab("C/N Ratio")+
   scale_fill_manual(values=wes_palette(n=2, name="GrandBudapest2"))+
-  scale_color_manual(values=c("slateblue","goldenrod","forestgreen","red"))+
-  annotate("text", x = 2.6, y = 15, label = "Year 2 values for site 3 don't \n show up because I have not \n input that data into \n my excel sheet yet!")
-```
-
-Show graphs together
-```{r}
-(hf1 | hf2) / hf3
+  scale_color_manual(values=c("slateblue","goldenrod","forestgreen","red"))
 ```
 
 ##Repeat the above code for the Light Fraction Soils
 
-Make Boxplots of Nitrogen Data
+Make Boxplots of Nitrogen, Carbon, and C/N Data
 ```{r}
 #% N means by Site, Treatment, and Year
 lf1 <- ggplot(data=fractionation_data_LF,
-              mapping=aes(x=Site,
+              mapping=aes(x=Treatment,
                           y=N,
-                          color=Treatment,
+                          #color=Treatment,
                           fill=Year)) +
-  geom_boxplot() +
- # scale_y_continuous(limits=c()) +
-  theme_classic() +
-  theme(legend.position = "none")+
+  geom_boxplot(position = position_dodge(width = .8)) +
+  # scale_y_continuous(limits=c()) +
+  theme_bw() +
+  #theme(legend.position = "none")+
+  facet_grid(.~Site)+
   ggtitle("% N of Light Fraction Soils") +
   xlab("Site")+
   ylab("Percent Nitrogen")+
   scale_fill_manual(values=wes_palette(n=2, name="GrandBudapest2"))+
   scale_color_manual(values=c("slateblue","goldenrod","forestgreen","red"))
-```
 
-Make Boxplots of Carbon Data
-```{r}
 #% C means by Site, Treatment, and Year
 lf2 <- ggplot(data=fractionation_data_LF,
-              mapping=aes(x=Site,
+              mapping=aes(x=Treatment,
                           y=C,
-                          color=Treatment,
+                          #color=Treatment,
                           fill=Year)) +
-  geom_boxplot() +
- # scale_y_continuous(limits=c()) +
-  theme_classic() +
-  theme(legend.position = "none")+
-  ggtitle("% C of Heavy Light Soils") +
+  geom_boxplot(position = position_dodge(width = .8)) +
+  # scale_y_continuous(limits=c()) +
+  theme_bw() +
+ # theme(legend.position = "none")+
+  facet_grid(.~Site)+
+  ggtitle("% C of Light Fraction Soils") +
   xlab("Site")+
   ylab("Percent Carbon")+
   scale_fill_manual(values=wes_palette(n=2, name="GrandBudapest2"))+
   scale_color_manual(values=c("slateblue","goldenrod","forestgreen","red"))
-```
 
-Make Boxplots of C/N Ratio Data
-```{r}
 #C/N Ratio means by Site, Treatment, and Year
 lf3 <- ggplot(data=fractionation_data_LF,
-              mapping=aes(x=Site,
+              mapping=aes(x=Treatment,
                           y=C/N,
-                          color=Treatment,
+                          #color=Treatment,
                           fill=Year)) +
-  geom_boxplot() +
+  geom_boxplot(position = position_dodge(width = .8)) +
   #scale_y_continuous(limits=c()) +
-  theme_classic() +
+  #theme(legend.position = "none") +
   ggtitle("C/N Ratios of Light Fraction Soils") +
   xlab("Site")+
   ylab("C/N Ratio")+
+  facet_grid(.~Site)+
   scale_fill_manual(values=wes_palette(n=2, name="GrandBudapest2"))+
   scale_color_manual(values=c("slateblue","goldenrod","forestgreen","red"))+
-  annotate("text", x = 2, y = 29, label = "This is my \n favorite graph!!")
+  theme_bw()
 ```
 
-Show graphs together
+Plot Graphs
 ```{r}
-(lf1 | lf2) / lf3
+lf1 / hf1
+lf2 / hf2
+lf3 / hf3
 ```
+
 
 I absolutely love the patchwork library, and I could spend hours playing around with different color palettes and fill/color options to make the best graphs. ggplot is a real timesink!
